@@ -1,0 +1,16 @@
+{
+  "name": "wasm-geojson-validation",
+  "collaborators": [
+    "Andrew J. Pierce <andrewp@spaceflightindustries.com>"
+  ],
+  "description": null,
+  "version": "0.1.0",
+  "license": null,
+  "repository": null,
+  "files": [
+    "wasm_geojson_validation_bg.wasm",
+    "wasm_geojson_validation.d.ts"
+  ],
+  "main": "wasm_geojson_validation.js",
+  "types": "wasm_geojson_validation.d.ts"
+}
