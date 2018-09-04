@@ -1,4 +1,4 @@
-import * as wasm from 'hello-wasm-pack';
+import * as wasm from '../pkg/wasm_geojson_validation';
 
 const data = require('./data.json');
 console.log(data);
@@ -20,7 +20,7 @@ function eventToGeoJson(datum) {
 
 console.log('Testing JS conversion');
 const jsTimes = [];
-const iterations = 500;
+const iterations = 50;
 for (let i = 0; i < iterations; i++) {
   const start = window.performance.now();
   const jsgj = data.items.map(eventToGeoJson);
@@ -28,8 +28,20 @@ for (let i = 0; i < iterations; i++) {
   jsTimes.push(end - start);
 }
 console.log(
-  `Average time out of ${iterations} iterations`,
+  `JS Average time out of ${iterations} iterations`,
   jsTimes.reduce((sum, num) => sum + num) / jsTimes.length,
   'ms'
 );
-// wasm.greet();
+
+const wasmTimes = [];
+for (let i = 0; i < iterations; i++) {
+  const start = window.performance.now();
+  const transformed = wasm.transformData(data);
+  const end = window.performance.now();
+  wasmTimes.push(end - start);
+}
+console.log(
+  `WASM Average time out of ${iterations} iterations`,
+  wasmTimes.reduce((sum, num) => sum + num) / wasmTimes.length,
+  'ms'
+);

@@ -6,12 +6,17 @@ authors = ["Andrew J. Pierce <andrewp@spaceflightindustries.com>"]
 [lib]
 crate-type = ["cdylib"]
 
-[features]
-default-features = ["console_error_panic_hook", "wee_alloc"]
-
 [dependencies]
 cfg-if = "0.1.2"
-wasm-bindgen = "0.2"
+geojson = "0.12"
+serde = "^1.0.59"
+serde_derive = "^1.0.59"
+serde_json = "1.0"
+time = "*"
+
+[dependencies.wasm-bindgen]
+version = "^0.2"
+features = ["serde-serialize"]
 
 # The `console_error_panic_hook` crate provides better debugging of panics by
 # logging them with `console.error`. This is great for development, but requires
